@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <header><%- include("./partials/nav.ejs") %></header>
+    <h1>Welcome to <%= title %></h1>
+    <%- include("./partials/footer.ejs") %>
   </body>
 </html>

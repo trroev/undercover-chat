@@ -36,7 +36,11 @@ exports.getMessages = (req, res, next) => {
         return next(err);
       }
       // render the messages/idex view with the messages
-      res.render("messages/index", { messages: messages });
+      res.render("messages/", {
+        title: "Message Board",
+        currentUser: req.user,
+        messages: messages,
+      });
     });
 };
 
