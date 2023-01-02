@@ -59,7 +59,11 @@ exports.getMessage = (req, res, next) => {
         return next(err);
       }
       // render the message/show view with the message
-      res.render("messages/show", { message: message });
+      res.render("messages/show", {
+        title: message.title,
+        currentUser: req.user,
+        message: message,
+      });
     });
 };
 
