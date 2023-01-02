@@ -21,7 +21,10 @@ exports.createMessage = (req, res, next) => {
 
 // render the messages/new view with a new, empty Message object
 exports.newMessage = (req, res) => {
-  res.render("messages/new", { message: new Message() });
+  res.render("messages/new", {
+    title: "New Message",
+    message: new Message(),
+  });
 };
 
 // retrieve all messages from the database and render them in the messages/index view

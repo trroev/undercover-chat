@@ -14,8 +14,7 @@
         <a href="/messages/<%= message._id %>"
           ><%= message.title %></a
         >
-        <% if (currentUser && currentUser.id == message.author.id) {
-        %>
+        <% if (currentUser && currentUser.id == message.user) { %>
         <a href="/messages/<%= message._id %>/edit">Edit</a>
         <% } %>
       </li>
