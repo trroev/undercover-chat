@@ -7,13 +7,20 @@ const LocalStrategy = require("passport-local");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const flash = require("connect-flash");
+
+// load environment variables from .env file
 require("dotenv").config();
+
+// import models
 const User = require("./models/user");
 
+// import routes
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const messagesRouter = require("./routes/messages");
 
+// initialize the app
 const app = express();
 const mongoDB = process.env.MONGO_DB_URL;
 
@@ -53,12 +60,15 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// set up middleware
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(flash());
 
+// set up routes
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/messages", messagesRouter);

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../partials/head.ejs") %>
+  <body>
+    <header><%- include("../partials/nav.ejs") %></header>
+    <main>
+      <h1>Edit Message</h1>
+      <form action="/messages/<%= message._id %>" method="POST">
+        <label for="title">Title:</label><br />
+        <input
+          type="text"
+          id="title"
+          name="title"
+          value="<%= message.title %>"
+        /><br />
+        <label for="text">Text:</label><br />
+        <textarea id="text" name="text"><%= message.text %></textarea
+        ><br />
+        <input type="hidden" name="_method" value="POST" />
+        <input type="submit" value="Save Changes" />
+      </form>
+    </main>
+    <%- include("../partials/footer.ejs") %>
+  </body>
+</html>

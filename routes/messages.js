@@ -17,8 +17,8 @@ router.get("/:id", messageController.getMessage);
 // GET request to render the messages/edit view for a specific message
 router.get("/:id/edit", messageController.editMessage);
 
-// PUT request to update an existing message in the database
-router.put("/:id", messageController.updateMessage);
+// POST request to update an existing message in the database
+router.post("/:id", messageController.updateMessage);
 
 // DELETE request to delete and existing message from the database
 router.delete("/:id", messageController.deleteMessage);

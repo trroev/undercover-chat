@@ -3,6 +3,10 @@
   <%- include("../partials/head.ejs") %>
   <body>
     <header><%- include("../partials/nav.ejs") %></header>
+    <% if (success) { %>
+    <div class="alert alert-success"><%= success %></div>
+    <% } %>
+
     <main>
       <h1><%= message.title %></h1>
       <p><%= message.text %></p>

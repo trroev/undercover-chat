@@ -63,6 +63,7 @@ exports.getMessage = (req, res, next) => {
         title: message.title,
         currentUser: req.user,
         message: message,
+        success: req.flash("success"),
       });
     });
 };
@@ -76,7 +77,10 @@ exports.editMessage = (req, res, next) => {
       return next(err);
     }
     // render the messages/edit view with the message
-    res.render("messages/edit", { message: message });
+    res.render("messages/edit", {
+      title: `Edit Message: ${message.title}`,
+      message: message,
+    });
   });
 };
 
@@ -88,8 +92,10 @@ exports.updateMessage = (req, res, next) => {
     if (err) {
       return next(err);
     }
-    // redirect to the messages page
-    res.redirect("/messages");
+    // set a flash message
+    req.flash("success", "Message updated successfully!");
+    // redirect to the message page
+    res.redirect(`/messages/${req.params.id}`);
   });
 };
 

@@ -56,7 +56,7 @@ exports.userProfile = (req, res, next) => {
       return next(err);
     }
     res.render("users/profile", {
-      title: "Profile",
+      title: `Profile: ${user.username}`,
       user: user,
     });
   });
