@@ -20,6 +20,9 @@ router.get("/:id/edit", messageController.editMessage);
 // POST request to update an existing message in the database
 router.post("/:id", messageController.updateMessage);
 
+// GET request to show all of the current users messages
+router.get("/:userId/my-messages", messageController.myMessages);
+
 // DELETE request to delete and existing message from the database
 router.delete("/:id", messageController.deleteMessage);
 

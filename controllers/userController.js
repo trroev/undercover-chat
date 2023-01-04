@@ -31,7 +31,7 @@ exports.createUser = (req, res, next) => {
 
 // render the users/login view
 exports.loginForm = (req, res) => {
-  res.render("users/login", { title: "Log In" });
+  res.render("users/login", { title: "Log In", user: req.user });
 };
 
 // authenticate the user and redirect to the user page
@@ -45,7 +45,10 @@ exports.login = (req, res, next) => {
     })(req, res, next);
   } else {
     // password was not entered correctly, redirect back to the login form
-    res.redirect("/users/login");
+    res.redirect("/users/login", {
+      title: "Log In",
+      user: req.user,
+    });
   }
 };
 
@@ -58,6 +61,7 @@ exports.userProfile = (req, res, next) => {
     res.render("users/profile", {
       title: `Profile: ${user.username}`,
       user: user,
+      message: {},
     });
   });
 };

@@ -1,18 +1,19 @@
 <nav>
-  <div>
-    <a href="/">Undercover Chat</a>
-    <p>A Members Only Message Board</p>
-  </div>
   <ul>
-    <li><a href="/">Home</a></li>
+    <% if (user) { %>
     <li>
-      <a href="/messages">Message Board</a>
+      <a href="/users/<%= user._id %>">Profile</a>
     </li>
+    <li>
+      <a href="/logout">Logout</a>
+    </li>
+    <% } else { %>
     <li>
       <a href="/users/login">Login</a>
     </li>
     <li>
-      <a href="/users/logout">Logout</a>
+      <a href="/users/signup">Sign Up</a>
     </li>
+    <% } %>
   </ul>
 </nav>

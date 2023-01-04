@@ -15,7 +15,7 @@ exports.createMessage = (req, res, next) => {
       return next(err);
     }
     // redirect to the messages page
-    res.redirect("/messages");
+    res.redirect("/messages", { user: req.user });
   });
 };
 
@@ -24,6 +24,7 @@ exports.newMessage = (req, res) => {
   res.render("messages/new", {
     title: "New Message",
     message: new Message(),
+    user: req.user,
   });
 };
 
@@ -41,6 +42,7 @@ exports.getMessages = (req, res, next) => {
       // render the messages/idex view with the messages
       res.render("messages/", {
         title: "Message Board",
+        user: req.user,
         currentUser: req.user,
         messages: messages,
       });
@@ -63,6 +65,7 @@ exports.getMessage = (req, res, next) => {
         title: message.title,
         currentUser: req.user,
         message: message,
+        user: req.user,
         success: req.flash("success"),
       });
     });
@@ -80,6 +83,7 @@ exports.editMessage = (req, res, next) => {
     res.render("messages/edit", {
       title: `Edit Message: ${message.title}`,
       message: message,
+      user: req.user,
     });
   });
 };
@@ -96,6 +100,22 @@ exports.updateMessage = (req, res, next) => {
     req.flash("success", "Message updated successfully!");
     // redirect to the message page
     res.redirect(`/messages/${req.params.id}`);
+  });
+};
+
+// show the current users messages that they have created
+exports.myMessages = (req, res, next) => {
+  // find all messages created by the currently authenticated user
+  Message.find({ user: req.user }, (err, messages) => {
+    // handle any errors
+    if (err) {
+      return next(err);
+    }
+    // render the my-messages view, passing the messages as the data
+    res.render("messages/my-messages", {
+      title: `${req.user.username}'s Messages`,
+      messages: messages,
+    });
   });
 };
 
