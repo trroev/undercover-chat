@@ -36,20 +36,24 @@ exports.loginForm = (req, res) => {
 
 // authenticate the user and redirect to the user page
 exports.login = (req, res, next) => {
-  // check if the provided password was entered correctly
-  if (req.body.password === req.body.password) {
-    // authenticate the user and redirect to the home page
-    passport.authenticate("local", {
-      successRedirect: "/users/profile",
-      failureRedirect: "/users/login",
-    })(req, res, next);
-  } else {
-    // password was not entered correctly, redirect back to the login form
-    res.redirect("/users/login", {
-      title: "Log In",
-      user: req.user,
+  // authenticate the user
+  passport.authenticate("local", (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.redirect("/users/login", {
+        title: "Log In",
+        user: req.user,
+      });
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.redirect("/users/profile");
     });
-  }
+  })(req, res, next);
 };
 
 // display the user profile

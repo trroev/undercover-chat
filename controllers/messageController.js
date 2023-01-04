@@ -115,6 +115,7 @@ exports.myMessages = (req, res, next) => {
     res.render("messages/my-messages", {
       title: `${req.user.username}'s Messages`,
       messages: messages,
+      user: req.user,
     });
   });
 };
