@@ -15,7 +15,7 @@ exports.createMessage = (req, res, next) => {
       return next(err);
     }
     // redirect to the messages page
-    res.redirect("/messages", { user: req.user });
+    res.redirect("/messages");
   });
 };
 
