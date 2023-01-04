@@ -3,7 +3,7 @@
   <%- include("../partials/head.ejs") %>
   <body>
     <header><%- include("../partials/nav.ejs") %></header>
-    <main>
+    <div class="main">
       <h1>Edit Message</h1>
       <form action="/messages/<%= message._id %>" method="POST">
         <label for="title">Title:</label><br />
@@ -19,7 +19,7 @@
         <input type="hidden" name="_method" value="POST" />
         <input type="submit" value="Save Changes" />
       </form>
-    </main>
+    </div>
     <%- include("../partials/footer.ejs") %>
   </body>
 </html>

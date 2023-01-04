@@ -3,7 +3,7 @@
   <%- include("../partials/head.ejs") %>
   <body>
     <header><%- include("../partials/nav.ejs") %></header>
-    <main>
+    <div class="main">
       <h1>My Messages</h1>
       <% if (messages.length === 0) { %>
       <p>You have not created any messages</p>
@@ -18,7 +18,7 @@
         <% } %>
       </ul>
       <% } %>
-    </main>
+    </div>
     <%- include("../partials/footer.ejs") %>
   </body>
 </html>
