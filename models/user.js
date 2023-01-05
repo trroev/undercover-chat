@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  membershipStatus: { type: Boolean, default: false },
+  isMember: { type: Boolean, default: false },
+  isAdmin: { type: Boolean, default: false },
 });
 
 userSchema.virtual("fullName").get(function () {

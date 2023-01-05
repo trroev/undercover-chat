@@ -66,8 +66,44 @@ exports.userProfile = (req, res, next) => {
       title: `Profile: ${user.username}`,
       user: user,
       message: {},
+      currentUser: req.user,
     });
   });
+};
+
+exports.secretPassword = (req, res, next) => {
+  if (
+    req.body.secretPassword === "newspaper" ||
+    req.body.secretPassword === "a newspaper"
+  ) {
+    // Update the user's isMember field
+    User.findByIdAndUpdate(
+      req.user._id,
+      { isMember: true },
+      (err) => {
+        if (err) {
+          return next(err);
+        }
+        // Redirect the user to their profile
+        res.redirect(`/users/${req.user._id}`);
+      }
+    );
+  } else {
+    // Find the user in the database using their id
+    User.findById(req.user._id, (err, user) => {
+      if (err) {
+        return next(err);
+      }
+      // Render the profile page with the secretPassword variable set to "incorrect"
+      res.render("users/profile", {
+        title: `Profile: ${user.username}`,
+        user: user,
+        message: {},
+        currentUser: req.user,
+        secretPassword: "incorrect",
+      });
+    });
+  }
 };
 
 // log the user out and redirect to the home page

@@ -17,6 +17,9 @@ router.post("/login", UserController.login);
 // display the user page
 router.get("/:id", UserController.userProfile);
 
+//
+router.post("/:id/become-member", UserController.secretPassword);
+
 // log the user out and redirect to the homepage
 router.get("/logout", UserController.logout);
 

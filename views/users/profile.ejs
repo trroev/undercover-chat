@@ -37,7 +37,59 @@
           </li>
         </ul>
       </div>
+      <% if (!currentUser.isMember) { %>
+      <section class="section">
+        <h2 class="title is-3">Become a member</h2>
+        <p class="subtitle is-5">
+          Want to become a member? Enter the secret password:
+        </p>
+        <small
+          >Hint: check the console with the developer tools</small
+        >
+        <form
+          action="/users/<%= currentUser._id %>/become-member"
+          method="POST"
+          class="form"
+        >
+          <div class="field">
+            <div class="control has-icons-left">
+              <input
+                type="text"
+                name="secretPassword"
+                placeholder="Secret password"
+                class="input is-medium"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <button class="button is-medium is-info" type="submit">
+                Become a member
+              </button>
+            </div>
+          </div>
+        </form>
+        <% if (typeof secretPassword !== 'undefined' && secretPassword
+        === 'incorrect') { %>
+        <p class="has-text-danger">
+          Sorry, you did not guess the secret password
+        </p>
+        <% } %>
+      </section>
+      <% } %>
     </section>
     <%- include("../partials/footer.ejs") %>
   </body>
 </html>
+
+<% if (message && message.text === "Wrong secret password") { %>
+<script>
+  alert("Wrong secret password");
+</script>
+<% } %>
+
+<script>
+  console.log(
+    "What is black and white, and not really read all over anymore?"
+  );
+</script>
