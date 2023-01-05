@@ -3,23 +3,30 @@
   <%- include("../partials/head.ejs") %>
   <body>
     <%- include("../partials/nav.ejs") %>
-    <div class="main">
-      <% if (success) { %>
-      <div class="alert alert-success"><%= success %></div>
-      <% } %>
-      <h1><%= message.title %></h1>
-      <p><%= message.text %></p>
-      <p>Created by <%= message.user.username %></p>
-      <% if (currentUser && currentUser.id == message.user.id) { %>
-      <a href="/messages/<%= message._id %>/edit">Edit</a>
-      <form
-        action="/messages/<%= message._id %>?_method=DELETE"
-        method="POST"
-      >
-        <button type="submit">Delete</button>
-      </form>
-      <% } %>
-    </div>
+    <section class="section">
+      <h1 class="title is-3"><%= message.title %></h1>
+      <p class="subtitle is-6"><%= message.text %></p>
+      <p class="subtitle is-5">
+        Created by <%= message.user.username %>
+      </p>
+      <div class="buttons are-medium">
+        <% if (currentUser && currentUser.id == message.user.id) { %>
+        <a
+          class="button is-info"
+          href="/messages/<%= message._id %>/edit"
+          >Edit</a
+        >
+        <form
+          action="/messages/<%= message._id %>?_method=DELETE"
+          method="POST"
+        >
+          <button class="button is-danger" type="submit">
+            Delete
+          </button>
+        </form>
+        <% } %>
+      </div>
+    </section>
     <%- include("../partials/footer.ejs") %>
   </body>
 </html>
