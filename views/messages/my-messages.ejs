@@ -3,22 +3,28 @@
   <%- include("../partials/head.ejs") %>
   <body>
     <%- include("../partials/nav.ejs") %>
-    <div class="main my-messages">
-      <h1>My Messages</h1>
-      <% if (messages.length === 0) { %>
-      <p>You have not created any messages</p>
-      <% } else { %>
-      <ul>
-        <% for (let message of messages) { %>
-        <li>
-          <a href="/messages/<%= message._id %>">
-            <%= message.title %>
-          </a>
-        </li>
-        <% } %>
-      </ul>
+    <h1 class="title is-2 has-text-centered">My Messages</h1>
+    <% if (messages.length === 0) { %>
+    <p class="subtitle is-5">You have not created any messages</p>
+    <% } else { %>
+    <div class="columns is-centered">
+      <% for (let message of messages) { %>
+      <div class="column is-half">
+        <div class="card">
+          <div
+            class="card-content has-background-info has-text-centered"
+          >
+            <a
+              class="subtitle is-4 has-text-white"
+              href="/messages/<%= message._id %>"
+            >
+              <%= message.title %>
+            </a>
+          </div>
+        </div>
+      </div>
       <% } %>
     </div>
-    <%- include("../partials/footer.ejs") %>
+    <% } %> <%- include("../partials/footer.ejs") %>
   </body>
 </html>
