@@ -3,28 +3,42 @@
   <%- include("../partials/head.ejs") %>
   <body>
     <%- include("../partials/nav.ejs") %>
-    <div class="main message-board">
-      <h1>Message Board</h1>
-
-      <% if (messages.length == 0) { %>
-      <p>No messages found.</p>
-      <% } else { %>
-      <ul>
-        <% messages.forEach(message => { %>
-        <li>
-          <a href="/messages/<%= message._id %>"
-            ><%= message.title %></a
+    <section class="hero is-light">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">Message Board</h1>
+          <% if (messages.length == 0) { %>
+          <p class="subtitle">No messages found.</p>
+          <% } else { %>
+          <div class="box">
+            <% messages.forEach(message => { %>
+            <article class="media">
+              <div class="media-left">
+                <a
+                  class="has-text-danger"
+                  href="/messages/<%= message._id %>"
+                  ><strong><%= message.title %></strong></a
+                ><br /><small><%= message.user.username %> </small>
+                <% if (currentUser && currentUser.id == message.user)
+                { %>
+                <a
+                  href="/messages/<%= message._id %>/edit"
+                  class="button is-link is-outlined"
+                  >Edit</a
+                >
+              </div>
+              <% } %>
+            </article>
+            <% }); %>
+          </div>
+          <% } %> <% if (currentUser) { %>
+          <a href="/messages/new" class="button is-info"
+            >New Message</a
           >
-          <% if (currentUser && currentUser.id == message.user) { %>
-          <a href="/messages/<%= message._id %>/edit">Edit</a>
           <% } %>
-        </li>
-        <% }); %>
-      </ul>
-      <% } %> <% if (currentUser) { %>
-      <a href="/messages/new" class="btn">New Message</a>
-      <% } %>
-    </div>
+        </div>
+      </div>
+    </section>
     <%- include("../partials/footer.ejs") %>
   </body>
 </html>
