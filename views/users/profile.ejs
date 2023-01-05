@@ -2,23 +2,29 @@
 <html lang="en">
   <%- include("../partials/head.ejs") %>
   <body>
-    <header><%- include("../partials/nav.ejs") %></header>
-    <div class="main">
-      <h1>Welcome, <%= user.firstName %>!</h1>
-      <p>Here are your options:</p>
-      <ul>
-        <li>
-          <a href="/messages">View Message Board</a>
-        </li>
-        <li>
-          <a href="/messages/<%= user._id %>/my-messages"
-            >My Messages</a
-          >
-        </li>
-        <li>
-          <a href="/logout">Logout</a>
-        </li>
-      </ul>
+    <%- include("../partials/nav.ejs") %>
+    <div class="profile-main">
+      <header>
+        <h1>Welcome, <%= user.firstName %>!</h1>
+      </header>
+      <main class="container">
+        <p>Here are your options:</p>
+        <div class="form-group">
+          <ul class="profile">
+            <li class="main-links profile">
+              <a href="/messages">View Message Board</a>
+            </li>
+            <li class="main-links profile">
+              <a href="/messages/<%= user._id %>/my-messages"
+                >My Messages</a
+              >
+            </li>
+            <li class="main-links profile">
+              <a href="/logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </main>
     </div>
     <%- include("../partials/footer.ejs") %>
   </body>
