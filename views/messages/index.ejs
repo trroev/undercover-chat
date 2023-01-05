@@ -3,7 +3,7 @@
   <%- include("../partials/head.ejs") %>
   <body>
     <%- include("../partials/nav.ejs") %>
-    <div class="main">
+    <div class="main message-board">
       <h1>Message Board</h1>
 
       <% if (messages.length == 0) { %>
@@ -22,7 +22,7 @@
         <% }); %>
       </ul>
       <% } %> <% if (currentUser) { %>
-      <a href="/messages/new" class="btn btn-primary">New Message</a>
+      <a href="/messages/new" class="btn">New Message</a>
       <% } %>
     </div>
     <%- include("../partials/footer.ejs") %>
