@@ -3,9 +3,14 @@
   <%- include("./partials/head.ejs") %>
   <body>
     <%- include("./partials/nav.ejs") %>
-    <div class="main">
-      <h1>Welcome to <%= title %></h1>
-      <%- include("./partials/footer.ejs") %>
-    </div>
+    <section class="hero is-halfheight">
+      <div class="hero-body">
+        <div class="">
+          <p class="title">Welcome to <%= title %></p>
+          <p class="subtitle">A Secret Message Board</p>
+        </div>
+      </div>
+    </section>
+    <%- include("./partials/footer.ejs") %>
   </body>
 </html>
