@@ -3,26 +3,40 @@
   <%- include("../partials/head.ejs") %>
   <body>
     <%- include("../partials/nav.ejs") %>
-    <div class="main">
-      <h1>Create a New Message</h1>
-      <% if (message.errors) { %> <% message.errors.forEach(error => {
-      %>
-      <p><%= error.message %></p>
-      <% }) %> <% } %>
-      <form action="/messages" method="POST">
-        <label for="title">Title:</label><br />
-        <input
-          type="text"
-          id="title"
-          name="title"
-          value="<%= message.title %>"
-        /><br />
-        <label for="text">Text:</label><br />
-        <textarea id="text" name="text"><%= message.text %></textarea
-        ><br /><br />
-        <button type="submit">Create Message</button>
-      </form>
-    </div>
+    <h1 class="title is-2 has-text-centered">Create a New Message</h1>
+    <% if (message.errors) { %> <% message.errors.forEach(error => {
+    %>
+    <p><%= error.message %></p>
+    <% }) %> <% } %>
+    <form action="/messages" method="POST" class="box">
+      <div class="field">
+        <label class="label" for="title">Title:</label>
+        <div class="control">
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value="<%= message.title %>"
+            class="input"
+          />
+        </div>
+      </div>
+      <div class="field">
+        <label class="label" for="text">Text:</label>
+        <div class="control">
+          <textarea id="text" name="text" class="textarea">
+<%= message.text %></textarea
+          >
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button type="submit" class="button is-info">
+            Create Message
+          </button>
+        </div>
+      </div>
+    </form>
     <%- include("../partials/footer.ejs") %>
   </body>
 </html>
