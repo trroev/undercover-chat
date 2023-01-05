@@ -3,29 +3,41 @@
   <%- include("../partials/head.ejs") %>
   <body>
     <%- include("../partials/nav.ejs") %>
-    <div class="profile-main">
-      <header>
-        <h1>Welcome, <%= user.firstName %>!</h1>
-      </header>
-      <main class="container">
-        <p>Here are your options:</p>
-        <div class="form-group">
-          <ul class="profile">
-            <li class="main-links profile">
-              <a href="/messages">View Message Board</a>
-            </li>
-            <li class="main-links profile">
-              <a href="/messages/<%= user._id %>/my-messages"
-                >My Messages</a
-              >
-            </li>
-            <li class="main-links profile">
-              <a href="/logout">Logout</a>
-            </li>
-          </ul>
+    <section class="hero is-medium">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title is-2">Welcome, <%= user.firstName %>!</h1>
         </div>
-      </main>
-    </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <p class="is-size-4">Here are your options:</p>
+        <ul class="profile">
+          <li class="column is-4">
+            <a
+              class="button is-info is-fullwidth is-size-5"
+              href="/messages"
+              >View Message Board</a
+            >
+          </li>
+          <li class="column is-4">
+            <a
+              class="button is-info is-fullwidth is-size-5"
+              href="/messages/<%= user._id %>/my-messages"
+              >My Messages</a
+            >
+          </li>
+          <li class="column is-4">
+            <a
+              class="button is-info is-fullwidth is-size-5"
+              href="/logout"
+              >Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+    </section>
     <%- include("../partials/footer.ejs") %>
   </body>
 </html>
