@@ -51,7 +51,17 @@ exports.login = (req, res, next) => {
       if (err) {
         return next(err);
       }
-      return res.redirect("/users/profile");
+      if (user.isMember) {
+        return res.render("users/profile", {
+          title: `Profile: ${user.username}`,
+          user: user,
+          message: {},
+          currentUser: req.user,
+          memberSince: new Date().toLocaleDateString(),
+        });
+      } else {
+        return res.redirect("/users/profile");
+      }
     });
   })(req, res, next);
 };
@@ -85,12 +95,18 @@ exports.secretPassword = (req, res, next) => {
     User.findByIdAndUpdate(
       req.user._id,
       { isMember: true },
-      (err) => {
+      (err, user) => {
         if (err) {
           return next(err);
         }
         // Redirect the user to their profile
-        res.redirect(`/users/${req.user._id}`);
+        res.render("users/profile", {
+          title: `Profile: ${user.username}`,
+          user: user,
+          message: {},
+          currentUser: req.user,
+          memberSince: new Date().toDateString(),
+        });
       }
     );
   } else {
