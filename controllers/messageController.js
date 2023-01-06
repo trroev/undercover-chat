@@ -25,6 +25,7 @@ exports.newMessage = (req, res) => {
     title: "New Message",
     message: new Message(),
     user: req.user,
+    currentUser: req.user,
   });
 };
 
@@ -84,6 +85,7 @@ exports.editMessage = (req, res, next) => {
       title: `Edit Message: ${message.title}`,
       message: message,
       user: req.user,
+      currentUser: req.user,
     });
   });
 };
@@ -116,6 +118,7 @@ exports.myMessages = (req, res, next) => {
       title: `${req.user.username}'s Messages`,
       messages: messages,
       user: req.user,
+      currentUser: req.user,
     });
   });
 };
