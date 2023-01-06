@@ -5,6 +5,7 @@ var router = express.Router();
 router.get("/", (req, res) => {
   res.render("index", {
     title: "Undercover Chat",
+    user: req.user,
     currentUser: req.user,
   });
 });
