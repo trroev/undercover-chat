@@ -24,7 +24,7 @@ const messagesRouter = require("./routes/messages");
 
 // initialize the app
 const app = express();
-const mongoDB = process.env.MONGO_DB_URL;
+const mongoDB = process.env.MONGODB_URI || process.env.MONGO_DB_URL;
 
 // connect to MongoDB
 mongoose.connect(mongoDB, {
