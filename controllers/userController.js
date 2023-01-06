@@ -3,7 +3,11 @@ const User = require("../models/user");
 
 // render the users/signup view with a new, empty User object
 exports.newUser = (req, res) => {
-  res.render("users/signup", { title: "Sign Up", user: new User() });
+  res.render("users/signup", {
+    title: "Sign Up",
+    currentUser: req.user,
+    user: new User(),
+  });
 };
 
 // create a new user and save it to the database
@@ -31,7 +35,11 @@ exports.createUser = (req, res, next) => {
 
 // render the users/login view
 exports.loginForm = (req, res) => {
-  res.render("users/login", { title: "Log In", user: req.user });
+  res.render("users/login", {
+    title: "Log In",
+    currentUser: req.user,
+    user: req.user,
+  });
 };
 
 // authenticate the user and redirect to the user page

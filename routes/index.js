@@ -3,7 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get("/", (req, res) => {
-  res.render("index", { title: "Undercover Chat", user: req.user });
+  res.render("index", {
+    title: "Undercover Chat",
+    currentUser: req.user,
+  });
 });
 
 // user logout
