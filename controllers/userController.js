@@ -62,11 +62,16 @@ exports.userProfile = (req, res, next) => {
     if (err) {
       return next(err);
     }
+    let memberSince;
+    if (user.isMember) {
+      memberSince = user.memberSince;
+    }
     res.render("users/profile", {
       title: `Profile: ${user.username}`,
       user: user,
       message: {},
       currentUser: req.user,
+      memberSince: memberSince,
     });
   });
 };

@@ -76,6 +76,9 @@
         </p>
         <% } %>
       </section>
+      <% } %> <% if (currentUser.isMember) { %> <% const memberSince =
+      new Date(currentUser.memberSince).toDateString(); %>
+      <p>Member since: <%= memberSince %></p>
       <% } %>
     </section>
     <%- include("../partials/footer.ejs") %>
