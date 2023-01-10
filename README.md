@@ -24,7 +24,7 @@ Building this app was a great way for me to learn more about authentication and 
 # clone this repo
 git clone https://github.com/trroev/undercover-chat.git
 # change into the directory
-cd express-local-library-app
+cd undercover-chat
 # install dependencies
 npm install
 # start development server
